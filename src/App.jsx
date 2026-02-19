@@ -25,7 +25,7 @@ const initialPrayers = [
   { id: 5, name: "Isha", time: "07:45 PM" },
 ];
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://192.168.1.5:5000/api";
 const ADMIN_EMAIL = "contactabdullahislam@gmail.com";
 
 function App() {
@@ -216,7 +216,7 @@ function App() {
 
       <AnimatePresence mode="wait">
         {view === "dashboard" ? (
-          <motion.div key="dash" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 md:p-12 flex flex-col items-center space-y-16">
+          <motion.div key="dash" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 md:p-12 flex flex-col items-center space-y-12 md:space-y-16">
 
             {/* 🛡️ OWNER INSIGHTS (Glassmorphism Light Mode) */}
             {user.email === ADMIN_EMAIL && (
@@ -277,13 +277,13 @@ function App() {
             </div>
 
             {/* Title & Glowing Progress Bar */}
-            <div className="w-full max-w-2xl space-y-10">
-              <div className="flex justify-between items-end px-6">
+            <div className="w-full max-w-2xl space-y-8 md:space-y-10">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-end px-4 md:px-6 gap-4">
                 <div className="space-y-2">
-                  <h1 className={`text-8xl font-black italic tracking-tighter leading-none ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>SALAH <span className="text-emerald-500">PRO</span></h1>
-                  <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.5em] ml-1">{format(selectedDate, "eeee, MMM do")}</p>
+                  <h1 className={`text-6xl md:text-8xl font-black italic tracking-tighter leading-none ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>SALAH <span className="text-emerald-500">PRO</span></h1>
+                  <p className="text-[12px] md:text-[14px] font-black text-slate-400 uppercase tracking-[0.5em] ml-1">{format(selectedDate, "eeee, MMM do")}</p>
                 </div>
-                <div className="text-8xl font-black text-emerald-500 tabular-nums drop-shadow-2xl">{progress}%</div>
+                <div className="text-6xl md:text-8xl font-black text-emerald-500 tabular-nums drop-shadow-2xl self-end">{progress}%</div>
               </div>
               <div className={`w-full h-6 rounded-full p-1.5 border shadow-inner overflow-hidden ${theme === 'dark' ? 'bg-white/5 border-white/5' : 'bg-slate-200 border-slate-300'}`}>
                 <motion.div initial={{ width: 0 }} animate={{ width: `${progress}%` }} className="h-full rounded-full bg-gradient-to-r from-emerald-600 via-emerald-400 to-teal-300 shadow-[0_0_30px_rgba(16,185,129,0.4)]" />
