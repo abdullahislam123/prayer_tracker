@@ -92,9 +92,12 @@ app.get('/api/admin/recent-activity', async (req, res) => {
 
 app.get('/api/history/:userId', async (req, res) => {
   try {
+    console.log(`📥 Fetch History Request for User: ${req.params.userId}`);
     const history = await Prayer.find({ userId: req.params.userId });
+    console.log(`📤 Sending History (${history.length} records) to ${req.params.userId}`);
     res.json(history);
   } catch (err) {
+    console.error("❌ History Load Error:", err);
     res.status(500).json({ error: "History load failed" });
   }
 });
@@ -102,13 +105,16 @@ app.get('/api/history/:userId', async (req, res) => {
 app.post('/api/save', async (req, res) => {
   const { userId, date, prayers } = req.body;
   try {
+    console.log(`💾 Save Request from ${userId} for date ${date}`);
     const record = await Prayer.findOneAndUpdate(
       { userId, date },
       { prayers },
       { upsert: true, returnDocument: 'after' }
     );
+    console.log(`✅ Saved successfully for ${userId}`);
     res.json(record);
   } catch (err) {
+    console.error("❌ Save Error:", err);
     res.status(500).json({ error: "Save operation failed" });
   }
 });
