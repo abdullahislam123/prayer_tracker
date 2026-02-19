@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Agar koi custom styles hain toh is line ke neeche likhein */
+body {
+  margin: 0;
+  background-color: #0f172a;
+}
